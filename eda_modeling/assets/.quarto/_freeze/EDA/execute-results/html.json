@@ -1,0 +1,17 @@
+{
+  "hash": "926c7751436cef4b44da4e63cdf35db9",
+  "result": {
+    "engine": "knitr",
+    "markdown": "This is an example of an EDA carried out using R using an isolated environment created using `renv`\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(ggplot2)\nlibrary(dplyr)\n```\n\n::: {.cell-output .cell-output-stderr}\n\n```\n\nAttaching package: 'dplyr'\n```\n\n\n:::\n\n::: {.cell-output .cell-output-stderr}\n\n```\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n```\n\n\n:::\n\n::: {.cell-output .cell-output-stderr}\n\n```\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n```\n\n\n:::\n\n```{.r .cell-code}\nlibrary(palmerpenguins)\nlibrary(ggthemes)\n```\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\ndf <- penguins[complete.cases(penguins),]\nhead(df)\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n# A tibble: 6 × 8\n  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  <fct>   <fct>              <dbl>         <dbl>             <int>       <int>\n1 Adelie  Torgersen           39.1          18.7               181        3750\n2 Adelie  Torgersen           39.5          17.4               186        3800\n3 Adelie  Torgersen           40.3          18                 195        3250\n4 Adelie  Torgersen           36.7          19.3               193        3450\n5 Adelie  Torgersen           39.3          20.6               190        3650\n6 Adelie  Torgersen           38.9          17.8               181        3625\n# ℹ 2 more variables: sex <fct>, year <int>\n```\n\n\n:::\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\nggplot(df, aes(x = bill_length_mm, y = body_mass_g, color = species)) +\n  geom_point() +\n  theme_clean() +\n  theme(legend.position = \"top\")\n```\n\n::: {.cell-output-display}\n![](EDA_files/figure-html/unnamed-chunk-3-1.png){width=672}\n:::\n:::\n\n\n\n\nThis shows a direct positive correlation between the two variables and some differences across species.\n",
+    "supporting": [
+      "EDA_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
