@@ -11,14 +11,7 @@
     "href": "EDA.html",
     "title": "eda_modeling",
     "section": "",
-    "text": "This is an example of an EDA carried out using R using an isolated environment created using renv\n\nlibrary(ggplot2)\nlibrary(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nlibrary(palmerpenguins)\nlibrary(ggthemes)\n\n\ndf &lt;- penguins[complete.cases(penguins),]\nhead(df)\n\n# A tibble: 6 × 8\n  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n1 Adelie  Torgersen           39.1          18.7               181        3750\n2 Adelie  Torgersen           39.5          17.4               186        3800\n3 Adelie  Torgersen           40.3          18                 195        3250\n4 Adelie  Torgersen           36.7          19.3               193        3450\n5 Adelie  Torgersen           39.3          20.6               190        3650\n6 Adelie  Torgersen           38.9          17.8               181        3625\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\n\nggplot(df, aes(x = bill_length_mm, y = body_mass_g, color = species)) +\n  geom_point() +\n  theme_clean() +\n  theme(legend.position = \"top\")\n\n\n\n\n\n\n\n\nThis shows a direct positive correlation between the two variables and some differences across species."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "eda_modeling",
-    "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+    "text": "This is an example of an EDA carried out using R using an isolated environment created using renv\n\nlibrary(ggplot2)\nlibrary(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nlibrary(palmerpenguins)\nlibrary(ggthemes)\n\n\ndf &lt;- penguins[complete.cases(penguins),]\nhead(df)\n\n# A tibble: 6 × 8\n  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n1 Adelie  Torgersen           39.1          18.7               181        3750\n2 Adelie  Torgersen           39.5          17.4               186        3800\n3 Adelie  Torgersen           40.3          18                 195        3250\n4 Adelie  Torgersen           36.7          19.3               193        3450\n5 Adelie  Torgersen           39.3          20.6               190        3650\n6 Adelie  Torgersen           38.9          17.8               181        3625\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\n\nggplot(df, aes(x = bill_length_mm, y = body_mass_g)) +\n  geom_point(aes(color = species)) +\n  geom_smooth(method = \"lm\", se = F, color = \"red\") +\n  theme_clean() +\n  theme(legend.position = \"top\")\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\nThis shows a direct positive correlation between the two variables and some differences across species."
   },
   {
     "objectID": "modeling.html",
@@ -26,5 +19,12 @@
     "title": "eda_modeling",
     "section": "",
     "text": "Now we perform the data modeling using python and create an isolated environment with venv. The steps to follow are easy and it suffices to create the virtual environment using the terminal with the following command:\npython -m venv /path/to/new/virtual/environment\nThen we can proceed to activate it using this command:\nsource &lt;venv&gt;/bin/activate where &lt;venv&gt; is the name of the virtual environment.\n\nimport pandas as pd\nfrom sklearn.linear_model import LinearRegression\n\n\ndf = pd.read_csv(\"~/Desktop/Projects/DO4DS/eda_modeling/data/penguins.csv\")\n\n\nmodel = LinearRegression()\nx = df[\"bill_length_mm\"]\ny = df[\"body_mass_g\"]\n\n\nmodel.fit(x.values.reshape(-1,1),y)\n\nLinearRegression()In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.LinearRegression?Documentation for LinearRegressioniFittedLinearRegression() \n\n\n\ny_pred = model.predict(x.values.reshape(-1,1))\n\n\nfrom sklearn.metrics import r2_score\n\n\nr2_score(y, y_pred)\n\n0.34745261128883764\n\n\nThe \\(R^2\\) score is pretty low suggesting that the model could be improved further by specifying some predictors or by adding the variation coming from the species."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "eda_modeling",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
   }
 ]
