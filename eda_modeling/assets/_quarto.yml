@@ -1,0 +1,23 @@
+project:
+  type: website
+
+website:
+  title: "eda_modeling"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+      - href: EDA.qmd
+        text: EDA in R
+      - href: modeling.qmd
+        text: Modeling in Python
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+
+

@@ -1,0 +1,22 @@
+This is an example of an EDA carried out using R using an isolated environment created using `renv`
+
+```{r}
+library(ggplot2)
+library(dplyr)
+library(palmerpenguins)
+library(ggthemes)
+```
+
+```{r}
+df <- penguins[complete.cases(penguins),]
+head(df)
+```
+
+```{r}
+ggplot(df, aes(x = bill_length_mm, y = body_mass_g, color = species)) +
+  geom_point() +
+  theme_clean() +
+  theme(legend.position = "top")
+```
+
+This shows a direct positive correlation between the two variables and some differences across species.

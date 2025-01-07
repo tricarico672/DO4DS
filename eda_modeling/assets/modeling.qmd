@@ -1,0 +1,42 @@
+Now we perform the data modeling using python and create an isolated environment with `venv`. The steps to follow are easy and it suffices to create the virtual environment using the terminal with the following command:
+
+```         
+python -m venv /path/to/new/virtual/environment
+```
+
+Then we can proceed to activate it using this command:
+
+source *\<venv\>*/bin/activate where \<venv\> is the name of the virtual environment.
+
+```{python}
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+```
+
+```{python}
+df = pd.read_csv("~/Desktop/Projects/DO4DS/eda_modeling/data/penguins.csv")
+```
+
+```{python}
+model = LinearRegression()
+x = df["bill_length_mm"]
+y = df["body_mass_g"]
+```
+
+```{python}
+model.fit(x.values.reshape(-1,1),y)
+```
+
+```{python}
+y_pred = model.predict(x.values.reshape(-1,1))
+```
+
+```{python}
+from sklearn.metrics import r2_score
+```
+
+```{python}
+r2_score(y, y_pred)
+```
+
+The $R^2$ score is pretty low suggesting that the model could be improved further by specifying some predictors or by adding the variation coming from the species.
