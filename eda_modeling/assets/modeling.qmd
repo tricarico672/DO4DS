@@ -98,4 +98,4 @@ y_pred_multiple = multiple_reg.predict(df_x)
 r2_score(y, y_pred_multiple)
 ```
 
-By including the variation coming from the different species, it is possible to now increase the $R^2$score.
+By including the variation coming from the different species, it is possible to now increase the $R^2$ score.

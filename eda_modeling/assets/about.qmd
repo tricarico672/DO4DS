@@ -2,4 +2,4 @@
 title: "About"
 ---
 
-About this site
+This website is a simple experimentation of the ideas gathered in the book [DevOps for Data Science](https://do4ds.com).

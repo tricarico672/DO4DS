@@ -1,7 +1,5 @@
 ---
-title: "eda_modeling"
+title: "DevOps4DS"
 ---
 
-This is a Quarto website.
-
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+This website is generated using Quarto.
