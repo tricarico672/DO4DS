@@ -20,4 +20,12 @@ ggplot(df, aes(x = bill_length_mm, y = body_mass_g)) +
   theme(legend.position = "top")
 ```
 
-This shows a direct positive correlation between the two variables and some differences across species.
+This shows a direct positive correlation between the two variables and some differences across species. In the modeling two methods are proposed. The first one is based off of a simple regression and shows an approximate fit to the data that is not very good (explains less than 40% of total variation in body mass). The second model employs a multiple linear regression with the categorical variable `species` to take into account the differences that might occur among the three different species in the sample. A graphical representation of this second model is given below.
+
+```{r}
+ggplot(df, aes(x = bill_length_mm, y = body_mass_g, color = species)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = F) +
+  theme_clean() +
+  theme(legend.position = "top")
+```

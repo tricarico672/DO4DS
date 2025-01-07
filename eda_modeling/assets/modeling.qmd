@@ -8,6 +8,8 @@ Then we can proceed to activate it using this command:
 
 source *\<venv\>*/bin/activate where \<venv\> is the name of the virtual environment.
 
+## Simple Regression
+
 ```{python}
 import pandas as pd
 from sklearn.linear_model import LinearRegression
@@ -27,6 +29,12 @@ y = df["body_mass_g"]
 model.fit(x.values.reshape(-1,1),y)
 ```
 
+To have a look at the estimated slope coefficient we can use the following:
+
+```{python}
+print(f"the estimated slope parameter for the only predictor {x.name} is {model.coef_[0]}")
+```
+
 ```{python}
 y_pred = model.predict(x.values.reshape(-1,1))
 ```
@@ -40,3 +48,54 @@ r2_score(y, y_pred)
 ```
 
 The $R^2$ score is pretty low suggesting that the model could be improved further by specifying some predictors or by adding the variation coming from the species.
+
+```{python}
+from pins import board_folder
+from vetiver import vetiver_pin_write, VetiverModel
+
+model_board = board_folder(
+  "data/model", 
+  allow_pickle_read = True
+)
+
+v = VetiverModel(model, model_name='mock_model', prototype_data=x.values.reshape(-1,1))
+vetiver_pin_write(model_board, v)
+```
+
+```{python}
+from vetiver import VetiverAPI
+app = VetiverAPI(v, check_prototype = True)
+```
+
+## Multiple regression
+
+```{python}
+dummies_species = pd.get_dummies(df["species"])
+
+df_x = pd.concat([x, dummies_species], axis = 1)
+
+df_x.head()
+```
+
+now we can fit a multiple regression model
+
+```{python}
+multiple_reg = LinearRegression()
+
+multiple_reg.fit(df_x, y)
+```
+
+```{python}
+print(df_x.columns)
+print(multiple_reg.coef_)
+```
+
+```{python}
+y_pred_multiple = multiple_reg.predict(df_x)
+```
+
+```{python}
+r2_score(y, y_pred_multiple)
+```
+
+By including the variation coming from the different species, it is possible to now increase the $R^2$score.
